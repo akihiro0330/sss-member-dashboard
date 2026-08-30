@@ -1,0 +1,409 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
+
+  color: #101828;
+  background: #f4f8ff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --sss-blue: #1554ad;
+  --sss-blue-light: #2878f5;
+  --sss-cyan: #3ec8f3;
+
+  --text-primary: #101828;
+  --text-secondary: #667085;
+
+  --glass-background: rgba(255, 255, 255, 0.66);
+  --glass-background-strong: rgba(255, 255, 255, 0.82);
+
+  --glass-border: rgba(255, 255, 255, 0.72);
+
+  --shadow-soft:
+    0 24px 60px rgba(26, 71, 119, 0.08),
+    0 4px 20px rgba(26, 71, 119, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  color: #101828;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(79, 190, 255, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 8%,
+      rgba(92, 122, 255, 0.13),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(91, 218, 255, 0.12),
+      transparent 34%
+    ),
+    #f5f9ff;
+
+  transition:
+    background 500ms ease,
+    color 300ms ease;
+}
+
+html.dark body {
+  color: #f8fafc;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(37, 99, 235, 0.2),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 8%,
+      rgba(67, 56, 202, 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(6, 182, 212, 0.08),
+      transparent 35%
+    ),
+    #070b14;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(40, 120, 245, 0.18);
+}
+
+/* ----------------------------------
+   Scrollbar
+---------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(46, 78, 120, 0.18);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(46, 78, 120, 0.28);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ----------------------------------
+   Glass surfaces
+---------------------------------- */
+
+.glass {
+  background: var(--glass-background);
+
+  border: 1px solid var(--glass-border);
+
+  box-shadow: var(--shadow-soft);
+
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+
+  transition:
+    background 400ms ease,
+    border-color 400ms ease,
+    box-shadow 400ms ease;
+}
+
+html.dark .glass {
+  background: rgba(15, 23, 42, 0.62);
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.glass-strong {
+  background: var(--glass-background-strong);
+
+  border: 1px solid rgba(255, 255, 255, 0.82);
+
+  box-shadow:
+    0 30px 80px rgba(33, 78, 125, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+
+  transition:
+    background 400ms ease,
+    border-color 400ms ease,
+    box-shadow 400ms ease;
+}
+
+html.dark .glass-strong {
+  background: rgba(15, 23, 42, 0.74);
+
+  border-color: rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ----------------------------------
+   Animated ambient background
+---------------------------------- */
+
+.ambient-background {
+  position: fixed;
+  inset: 0;
+
+  z-index: -2;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-orb {
+  position: absolute;
+
+  border-radius: 9999px;
+
+  filter: blur(100px);
+
+  opacity: 0.22;
+
+  will-change: transform;
+
+  transition:
+    background 500ms ease,
+    opacity 500ms ease;
+}
+
+.ambient-orb-one {
+  width: 42rem;
+  height: 42rem;
+
+  left: -12rem;
+  top: -14rem;
+
+  background: rgba(48, 183, 255, 0.55);
+
+  animation: float-one 18s ease-in-out infinite alternate;
+}
+
+.ambient-orb-two {
+  width: 38rem;
+  height: 38rem;
+
+  right: -10rem;
+  top: 6rem;
+
+  background: rgba(72, 104, 255, 0.35);
+
+  animation: float-two 22s ease-in-out infinite alternate;
+}
+
+.ambient-orb-three {
+  width: 34rem;
+  height: 34rem;
+
+  left: 35%;
+  bottom: -16rem;
+
+  background: rgba(51, 213, 236, 0.34);
+
+  animation: float-three 20s ease-in-out infinite alternate;
+}
+
+html.dark .ambient-orb-one {
+  background: rgba(37, 99, 235, 0.42);
+  opacity: 0.2;
+}
+
+html.dark .ambient-orb-two {
+  background: rgba(79, 70, 229, 0.32);
+  opacity: 0.18;
+}
+
+html.dark .ambient-orb-three {
+  background: rgba(6, 182, 212, 0.28);
+  opacity: 0.15;
+}
+
+@keyframes float-one {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(90px, 65px, 0) scale(1.12);
+  }
+}
+
+@keyframes float-two {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(-80px, 90px, 0) scale(1.14);
+  }
+}
+
+@keyframes float-three {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(70px, -60px, 0) scale(1.1);
+  }
+}
+
+/* ----------------------------------
+   Utility transitions
+---------------------------------- */
+
+.theme-transition {
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+/* ----------------------------------
+   Reduced motion accessibility
+---------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.8);
+  outline-offset: 3px;
+}
+
+html.dark button:focus-visible,
+html.dark a:focus-visible,
+html.dark input:focus-visible,
+html.dark textarea:focus-visible,
+html.dark select:focus-visible {
+  outline-color: rgba(96, 165, 250, 0.9);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.interactive-card {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+@media (hover: hover) {
+  .interactive-card:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.pressable:active {
+  transform: scale(0.985);
+}
