@@ -19,7 +19,7 @@ import {
   useNotifications,
 } from "../../context/NotificationContext";
 
-import sssMark from "../../assets/sss-mark.png";
+import sssMark from "src/assets/sss-mark.png";
 
 export default function MobileHeader() {
   const {
