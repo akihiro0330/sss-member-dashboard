@@ -28,6 +28,8 @@ import {
   preloadPage,
 } from "../../utils/pagePreload";
 
+import sssLogo from "../../assets/sss-logo.png";
+
 export default function DesktopNavbar() {
   const {
     activePage,
@@ -76,6 +78,24 @@ export default function DesktopNavbar() {
     );
   }
 
+  function goHome() {
+    setProfileOpen(
+      false,
+    );
+
+    setNotificationsOpen(
+      false,
+    );
+
+    setMoreMenuOpen(
+      false,
+    );
+
+    navigate(
+      "overview",
+    );
+  }
+
   return (
     <header
       className="
@@ -119,11 +139,10 @@ export default function DesktopNavbar() {
         {/* BRAND */}
         <button
           type="button"
-          onClick={() =>
-            navigate(
-              "overview",
-            )
+          onClick={
+            goHome
           }
+          aria-label="Go to dashboard overview"
           className="
             flex
             shrink-0
@@ -144,28 +163,38 @@ export default function DesktopNavbar() {
           <div
             className="
               flex
-              h-10
-              w-10
-
+              h-11
+              min-w-[106px]
               items-center
               justify-center
 
+              overflow-hidden
+
               rounded-[15px]
 
-              bg-gradient-to-br
-              from-blue-600
-              to-cyan-400
+              border
+              border-white/80
 
-              text-sm
-              font-bold
+              bg-white
 
-              text-white
+              px-2.5
 
-              shadow-lg
-              shadow-blue-500/20
+              shadow-sm
+
+              dark:border-white/10
             "
           >
-            SSS
+            <img
+              src={sssLogo}
+              alt="Social Security System"
+              className="
+                block
+                h-8
+                w-auto
+                max-w-[92px]
+                object-contain
+              "
+            />
           </div>
 
           <div className="hidden lg:block">
@@ -484,6 +513,7 @@ export default function DesktopNavbar() {
             aria-expanded={
               profileOpen
             }
+            aria-label="Open profile menu"
             className={`
               flex
               items-center

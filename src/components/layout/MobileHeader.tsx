@@ -19,6 +19,8 @@ import {
   useNotifications,
 } from "../../context/NotificationContext";
 
+import sssMark from "../../assets/sss-mark.png";
+
 export default function MobileHeader() {
   const {
     profileOpen,
@@ -138,8 +140,10 @@ export default function MobileHeader() {
           onClick={
             goHome
           }
+          aria-label="Go to dashboard overview"
           className="
             flex
+            min-w-0
             items-center
             gap-3
 
@@ -157,31 +161,46 @@ export default function MobileHeader() {
               flex
               h-10
               w-10
+              shrink-0
 
               items-center
               justify-center
 
-              rounded-2xl
+              overflow-hidden
 
-              bg-gradient-to-br
-              from-blue-600
-              to-cyan-400
+              rounded-[14px]
 
-              text-xs
-              font-bold
+              border
+              border-white/80
 
-              text-white
+              bg-white
 
-              shadow-lg
-              shadow-blue-500/20
+              p-1.5
+
+              shadow-md
+              shadow-blue-500/10
+
+              dark:border-white/10
             "
           >
-            SSS
+            <img
+              src={sssMark}
+              alt=""
+              aria-hidden="true"
+              className="
+                block
+                h-full
+                w-full
+                object-contain
+              "
+            />
           </div>
 
-          <div>
+          <div className="min-w-0">
             <p
               className="
+                truncate
+
                 text-sm
                 font-semibold
 
@@ -197,6 +216,8 @@ export default function MobileHeader() {
 
             <p
               className="
+                truncate
+
                 text-[11px]
 
                 text-slate-400
@@ -213,6 +234,7 @@ export default function MobileHeader() {
         <div
           className="
             flex
+            shrink-0
             items-center
             gap-1.5
           "
